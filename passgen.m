@@ -19,8 +19,9 @@
 %
 % Dictionary downloaded from: http://wordlist.sourceforge.net/
 %
-% Download and extract the "Unofficial Alternate 12 Dicts Package" into
-% this directory, then run this script.
+% Download the "Unofficial Alternate 12 Dicts Package" and extract
+% '2of12full.txt into this directory, then run this script.  Some
+% parameters are defined below in the "parameters" section.
 %
 % Author: John Gebbie
 % Institution: self
@@ -36,7 +37,7 @@ min_word_len = 4;
 max_word_len = 4;
 
 % read in word data
-fid = fopen('2of12.txt','r');
+fid = fopen('2of12full.txt','r');
 assert(fid ~= -1);
 try
     all = textscan(fid,'%s');
