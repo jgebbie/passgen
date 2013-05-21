@@ -32,7 +32,7 @@ clear;
 clc;
 
 % parameters
-Nwords = 6;
+Nwords = 4;
 min_word_len = 4;
 max_word_len = 4;
 
