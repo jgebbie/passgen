@@ -33,11 +33,11 @@ clc;
 
 % parameters
 Nwords = 4;
-min_word_len = 4;
+min_word_len = 2;
 max_word_len = 4;
 
 % read in word data
-fid = fopen('2of12full.txt','r');
+fid = fopen('2of12inf.txt','r');
 assert(fid ~= -1);
 try
     all = textscan(fid,'%s');
@@ -94,11 +94,11 @@ end
 entropy_bits = log(length(shortlist))/log(2)*Nwords;
 
 % print it out
-fprintf('%s (entropy = %.1f bits)\n', password, entropy_bits);
+fprintf('%-30s (entropy = %.1f bits)\n', password, entropy_bits);
 
 % take out the spaces
 password(password == ' ') = [];
-fprintf('%s (no space)\n', password);
+fprintf('%-30s (no space)\n', password);
 
 % add uppercase, punctuation, and number
 password(1) = upper(password(1));           % capitalize first char
@@ -112,5 +112,5 @@ entropy_bits = entropy_bits + ...
     log(10)/log(2) + log(length(punct_chars))/log(2);
 
 % print out modified password
-fprintf('%s (entropy = %.1f bits)\n', password, entropy_bits);
+fprintf('%-30s (entropy = %.1f bits)\n', password, entropy_bits);
 
