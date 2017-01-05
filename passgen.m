@@ -33,7 +33,7 @@ clc;
 
 % parameters
 Nwords = 4;
-min_word_len = 2;
+min_word_len = 3;
 max_word_len = 4;
 
 % read in word data
@@ -53,7 +53,7 @@ shortlist = {};
 for n = 1:length(all)
     word = all{n};
     
-    % skip words that are not the right length
+    % skip words that are not the right lengthf
     if length(word) < min_word_len
         continue;
     end
@@ -73,11 +73,13 @@ for n = 1:length(all)
     shortlist{end+1} = word; %#ok
 end
 
+rs = RandStream('mt19937ar','Seed','shuffle');
+
 % build password
 password = '';
 n = 1;
 while n <= Nwords
-    word = shortlist{randi(length(shortlist))};
+    word = shortlist{rs.randi(length(shortlist))};
     
     if n > 1;
         password = [ password ' ' ]; %#ok
@@ -102,9 +104,9 @@ fprintf('%-30s (no space)\n', password);
 
 % add uppercase, punctuation, and number
 password(1) = upper(password(1));           % capitalize first char
-rand_num = int2str(randi(10)-1);
+rand_num = int2str(rs.randi(10)-1);
 punct_chars = '!@#$%^&*;,./';
-rand_punct = punct_chars(randi(length(punct_chars)));
+rand_punct = punct_chars(rs.randi(length(punct_chars)));
 password = [password, rand_num, rand_punct];
 
 % compute bits of entropy
