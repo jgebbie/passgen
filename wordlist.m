@@ -73,9 +73,12 @@ for n = 1:length(allwords)
     shortlist{end+1} = word; %#ok
 end
 
-rs = RandStream('mt19937ar','Seed','shuffle');
+js = java.security.SecureRandom();
 
-idx = rs.randi(length(shortlist), 200, 1);
+idx = nan(200,1);
+for tmpi = 1:length(idx)
+    idx(tmpi) = js.nextInt(length(shortlist))+1;
+end
 idx = unique(idx, 'stable');
 idx = idx(1:100);
 idx = sort(idx);

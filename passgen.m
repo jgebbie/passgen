@@ -73,13 +73,13 @@ for n = 1:length(all)
     shortlist{end+1} = word; %#ok
 end
 
-rs = RandStream('mt19937ar','Seed','shuffle');
+js = java.security.SecureRandom();
 
 % build password
 password = '';
 n = 1;
 while n <= Nwords
-    word = shortlist{rs.randi(length(shortlist))};
+    word = shortlist{js.nextInt(length(shortlist))+1};
     
     if n > 1;
         password = [ password ' ' ]; %#ok
@@ -104,9 +104,9 @@ fprintf('%-30s (no space)\n', password);
 
 % add uppercase, punctuation, and number
 password(1) = upper(password(1));           % capitalize first char
-rand_num = int2str(rs.randi(10)-1);
+rand_num = int2str(js.nextInt(10));
 punct_chars = '!@#$%^&*;,./';
-rand_punct = punct_chars(rs.randi(length(punct_chars)));
+rand_punct = punct_chars(js.nextInt(length(punct_chars))+1);
 password = [password, rand_num, rand_punct];
 
 % compute bits of entropy
