@@ -34,7 +34,7 @@ clc;
 % parameters
 Nwords = 4;
 min_word_len = 3;
-max_word_len = 4;
+max_word_len = 6;
 
 % read in word data
 fid = fopen('2of12inf.txt','r');
